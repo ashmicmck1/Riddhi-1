@@ -1,11 +1,10 @@
-public class Hotel implements Comparable<Hotel>{
+public class Hotel implements Comparable<Hotel> {
     private static int NUM_HOTELS = 1;
 
     private String name;
     private double price;
     private int renovationYear;
     private HotelQuality quality;
-    
 
     public Hotel(String name, double price, int renovationYear, HotelQuality quality) {
         this.name = name;
@@ -16,6 +15,8 @@ public class Hotel implements Comparable<Hotel>{
 
     public Hotel(double price, int renovationYear, HotelQuality quality) {
         this.name = "Hotel-" + NUM_HOTELS++;
+        // Using this print statement to debug for missing Hotel-3
+        System.out.println("Creating " + this.name);
         this.price = price;
         this.renovationYear = renovationYear;
         this.quality = quality;
@@ -24,7 +25,7 @@ public class Hotel implements Comparable<Hotel>{
     @Override
     public int compareTo(Hotel other) {
         // return price - other.price;
-    
+
         if (price > other.price) {
             return 1;
         } else if (price == other.price) {
@@ -61,7 +62,6 @@ public class Hotel implements Comparable<Hotel>{
     public void setRenovationYear(int renovationYear) {
         this.renovationYear = renovationYear;
     }
-
 
     @Override
     public String toString() {
