@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,14 +18,14 @@ public class Hotels {
         hotels.add(new Hotel(444.44, 2006, HotelQuality.FOUR_STAR));
 
         hotels.add(new Hotel(
-            rand.nextDouble(50, 500),
-            rand.nextInt(1999, 2024),
-            HotelQuality.THREE_STAR));
-        
+                rand.nextDouble(50, 500),
+                rand.nextInt(1999, 2024),
+                HotelQuality.THREE_STAR));
+
         hotels.add(new Hotel(
-            rand.nextDouble(50, 500),
-            rand.nextInt(1999, 2024),
-            HotelQuality.THREE_STAR));
+                rand.nextDouble(50, 500),
+                rand.nextInt(1999, 2024),
+                HotelQuality.THREE_STAR));
     }
 
     List<Hotel> get() {
@@ -40,8 +41,8 @@ public class Hotels {
     // Google Java Style Guide https://google.github.io/styleguide/javaguide.html
     public ArrayList<Hotel> some_hotels() {
         ArrayList<Hotel> temp = new ArrayList<>();
-        for (int i=0; i<hotels.size(); i++) {
-            if (hotels.get(i).getPrice()<100) {
+        for (int i = 0; i < hotels.size(); i++) {
+            if (hotels.get(i).getPrice() < 100) {
                 temp.add(hotels.get(i));
             }
         }
@@ -50,25 +51,42 @@ public class Hotels {
 
     // TODO 2 - Get hotels with prices less than 200.
     public ArrayList<Hotel> filterHotelsLessThan200() {
-        return null;
+        ArrayList<Hotel> temp = new ArrayList<>();
+        for (int i = 0; i < hotels.size(); i++) {
+            if (hotels.get(i).getPrice() < 200) {
+                temp.add(hotels.get(i));
+            }
+        }
+        return temp;
     }
 
     // TODO 3 - Get hotels that are no more than 9 years old.
     public ArrayList<Hotel> filterHotelsYoungerThan10Years() {
-        return null;
+        ArrayList<Hotel> temp = new ArrayList<>();
+        for (int i = 0; i < hotels.size(); i++) {
+            if (hotels.get(i).getRenovationYear() < (LocalDate.now().getYear() - 10)) {
+                temp.add(hotels.get(i));
+            }
+        }
+        return temp;
     }
 
     // TODO 4 - Get hotels that have the highest quality.
     public ArrayList<Hotel> filterHighestQualityHotels() {
-        return null;
+        ArrayList<Hotel> temp = new ArrayList<>();
+        for (int i = 0; i < hotels.size(); i++) {
+            if (hotels.get(i).getQuality().equals(HotelQuality.FOUR_STAR)) {
+                temp.add(hotels.get(i));
+            }
+        }
+        return temp;
     }
 
     // Pre-Java8, it took a lot of code to combine TODO 1-4 into a single function.
     // We had to create a functional interface
     // 1. create a class that has only 1 function (predicate like "test")
-    // 2. implement the interface for every one of your predicates 
+    // 2. implement the interface for every one of your predicates
     // 3. pass instance of that implementation to the filter
-
 
     // TODO 5 - pass a filter function as a parameter
     public List<Hotel> filterBy(FilterFunction filter) {
